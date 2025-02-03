@@ -1,23 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface PloygonState {
-  hello: string;
+interface PolygonState {
+  polygons: {
+    id: string;
+    coordinates: number[][];
+  }[];
 }
 
-const initialState: PloygonState = {
-  hello: "world",
+const initialState: PolygonState = {
+  polygons: [],
 };
 
 const polygonSlice = createSlice({
   name: "polygon",
   initialState,
   reducers: {
-    addPloygon: (state, action) => {
-      state.hello = action.payload;
+    addPolygon: (
+      state,
+      action: PayloadAction<{ id: string; coordinates: number[][] }>
+    ) => {
+      state.polygons.push({
+        ...action.payload,
+      });
     },
   },
 });
 
-export const { addPloygon } = polygonSlice.actions;
+export const { addPolygon } = polygonSlice.actions;
 
 export default polygonSlice.reducer;

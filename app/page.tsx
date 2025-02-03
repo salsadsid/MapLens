@@ -1,19 +1,17 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addPloygon } from "@/redux/slices/ploygonSlice";
+import MapComponent from "@/components/MapComponents";
+import { useAppDispatch } from "@/redux/hooks";
+
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 export default function Home() {
-  const ploycarbon = useAppSelector((state) => state.polygon.hello);
   const dispatch = useAppDispatch();
   return (
     <div>
       <h2 className="my-24 text-center text-4xl"> Hello MapLens</h2>
-      <p className="text-center my-20">Hello {ploycarbon}</p>
-      <button onClick={() => dispatch(addPloygon("redux test"))}>
-        Redux Test
-      </button>
+      <p className="text-center my-20">Hello </p>
+      <MapComponent />
       <MapContainer
         style={{ height: "50vh", width: "80vh" }}
         className="mx-auto"
