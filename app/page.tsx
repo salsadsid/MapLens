@@ -3,6 +3,7 @@ import MapComponent from "@/components/MapComponents";
 import { useAppDispatch } from "@/redux/hooks";
 
 import "leaflet/dist/leaflet.css";
+import Link from "next/link";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <h2 className="my-24 text-center text-4xl"> Hello MapLens</h2>
-      <p className="text-center my-20">Hello </p>
+      <Link href="/manage-polygons">Manage Polygons</Link>
       <MapComponent />
       <MapContainer
         style={{ height: "50vh", width: "80vh" }}

@@ -4,6 +4,8 @@ interface PolygonState {
   polygons: {
     id: string;
     coordinates: number[][];
+    fillColor: string;
+    borderColor: string;
   }[];
 }
 
@@ -21,11 +23,33 @@ const polygonSlice = createSlice({
     ) => {
       state.polygons.push({
         ...action.payload,
+        fillColor: "#ff0000",
+        borderColor: "#000000",
       });
+    },
+    updatePolygon: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        fillColor?: string;
+        borderColor?: string;
+      }>
+    ) => {
+      const polygon = state.polygons.find((p) => p.id === action.payload.id);
+      if (polygon) {
+        if (action.payload.fillColor)
+          polygon.fillColor = action.payload.fillColor;
+        if (action.payload.borderColor)
+          polygon.borderColor = action.payload.borderColor;
+      }
+    },
+    deletePolygon: (state, action: PayloadAction<string>) => {
+      state.polygons = state.polygons.filter((p) => p.id !== action.payload);
     },
   },
 });
 
-export const { addPolygon } = polygonSlice.actions;
+export const { addPolygon, updatePolygon, deletePolygon } =
+  polygonSlice.actions;
 
 export default polygonSlice.reducer;
