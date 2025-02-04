@@ -2,15 +2,20 @@
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addPolygon } from "@/redux/slices/ploygonSlice";
-
 import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { FeatureGroup, MapContainer, Polygon, TileLayer } from "react-leaflet";
+import {
+  FeatureGroup,
+  MapContainer,
+  Marker,
+  Polygon,
+  TileLayer,
+  Tooltip,
+} from "react-leaflet";
 import { v4 as uuidv4 } from "uuid";
 
-// Dynamically import EditControl to fix "L is not defined" error
 const EditControl = dynamic(
   () => import("react-leaflet-draw").then((mod) => mod.EditControl),
   { ssr: false }
@@ -39,7 +44,7 @@ const MapComponent = () => {
 
   return (
     <MapContainer
-      center={[51.505, -0.09]}
+      center={[23.68, 90.35]}
       zoom={13}
       style={{ height: "500px", width: "100%" }}
     >
@@ -66,6 +71,18 @@ const MapComponent = () => {
             fillOpacity: 0.5,
           }}
         />
+      ))}
+      {polygons.map((polygon) => (
+        <Marker key={polygon.id} position={polygon.center}>
+          <Tooltip permanent>
+            <div>
+              <p>
+                <strong>{polygon.label}</strong>
+              </p>
+              <p>Area: {polygon.area.toFixed(2)} sq. meters</p>
+            </div>
+          </Tooltip>
+        </Marker>
       ))}
     </MapContainer>
   );
