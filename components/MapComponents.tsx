@@ -1,7 +1,8 @@
 "use client";
-
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addPolygon } from "@/redux/slices/ploygonSlice";
+// Or individual functions
+import { booleanIntersects, polygon as turfPolygon } from "@turf/turf";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
@@ -33,9 +34,35 @@ const MapComponent = () => {
   const onCreated = (e: any) => {
     const { layer } = e;
     if (layer && layer.getLatLngs) {
-      const latlngs = layer
+      let latlngs = layer
         .getLatLngs()[0]
         .map((latlng: any) => [latlng.lat, latlng.lng]);
+
+      // Ensure polygon is closed
+      if (
+        latlngs.length > 0 &&
+        (latlngs[0][0] !== latlngs[latlngs.length - 1][0] ||
+          latlngs[0][1] !== latlngs[latlngs.length - 1][1])
+      ) {
+        latlngs.push(latlngs[0]); // Close the ring
+      }
+
+      // Create a valid Turf polygon
+      const newPoly = turfPolygon([latlngs]);
+
+      // Check intersection properly
+      const isOverlap = polygons.some((polygon) => {
+        const existingPoly = turfPolygon([polygon.coordinates]);
+        return booleanIntersects(newPoly, existingPoly);
+      });
+
+      console.log("Overlap detected:", isOverlap); // Debugging log
+
+      if (isOverlap) {
+        alert("Polygon overlaps with an existing one!");
+        return;
+      }
+
       dispatch(addPolygon({ id: uuidv4(), coordinates: latlngs }));
     }
   };
