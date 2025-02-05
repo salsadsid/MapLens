@@ -1,0 +1,58 @@
+$mobile-menu-transition: all 0.3s ease-in-out;
+
+.navbar {
+  .hamburger {
+    display: none;
+    cursor: pointer;
+
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: $mobile-menu-transition;
+      background-color: theme("colors.gray.700");
+    }
+
+    &.active {
+      .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
+
+  .mobileMenu {
+    @apply md:hidden absolute top-full left-0 w-full bg-white shadow-lg;
+    transition: $mobile-menu-transition;
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+
+    &.open {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  // Custom hover effect using Sass
+  .navLink {
+    @apply text-gray-600 hover:text-blue-500 transition-colors;
+
+    &::after {
+      content: "";
+      @apply block w-0 h-0.5 bg-blue-500 transition-all duration-300;
+    }
+
+    &:hover::after {
+      @apply w-full;
+    }
+  }
+}
