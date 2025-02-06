@@ -96,28 +96,26 @@ const PolygonList: FC = () => {
             className={styles.searchInput}
           />
           {filteredPolygons.length > 0 && (
-            <>
-              <button
-                className={styles.controlButton}
-                onClick={handleExport}
-                aria-label="Export polygons"
-              >
-                <PiExportBold className="h-5 w-5" />
-                Export
-              </button>
-              <label className={styles.controlButton}>
-                <BiSolidFileImport className="h-5 w-5" />
-                Import
-                <input
-                  type="file"
-                  accept="application/json"
-                  onChange={handleImport}
-                  className={styles.fileInput}
-                  aria-label="Import polygons"
-                />
-              </label>
-            </>
+            <button
+              className={styles.controlButton}
+              onClick={handleExport}
+              aria-label="Export polygons"
+            >
+              <PiExportBold className="h-5 w-5" />
+              Export
+            </button>
           )}
+          <label className={styles.controlButton}>
+            <BiSolidFileImport className="h-5 w-5" />
+            Import
+            <input
+              type="file"
+              accept="application/json"
+              onChange={handleImport}
+              className={styles.fileInput}
+              aria-label="Import polygons"
+            />
+          </label>
         </div>
       </header>
 
