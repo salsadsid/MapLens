@@ -23,7 +23,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="text-2xl uppercase tracking-wide font-bold text-[#4f46e5]"
+            className="text-2xl uppercase tracking-wide font-mono text-[#4f46e5]"
           >
             🗺️ Maplens
           </Link>
