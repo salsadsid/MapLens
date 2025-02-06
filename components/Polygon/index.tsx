@@ -9,7 +9,9 @@ import {
 import styles from "@/styles/PolygonList.module.scss";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChangeEvent, FC, useCallback } from "react";
+import { ChangeEvent, FC, useCallback, useState } from "react";
+import { BiSolidFileImport } from "react-icons/bi";
+import { PiExportBold } from "react-icons/pi";
 import ColorInput from "./components/ColorInput";
 // Define the Polygon type
 interface Polygon {
@@ -27,7 +29,11 @@ const PolygonList: FC = () => {
   const polygons = useAppSelector(
     (state) => state.polygon.polygons
   ) as Polygon[];
+  const [search, setSearch] = useState("");
 
+  const filteredPolygons = polygons.filter((polygon) =>
+    polygon.label.toLowerCase().includes(search.toLowerCase())
+  );
   // Export polygons to a JSON file
   const handleExport = useCallback(() => {
     const dataStr = JSON.stringify(polygons, null, 2);
@@ -79,34 +85,45 @@ const PolygonList: FC = () => {
 
   return (
     <section className={styles.container}>
-      {polygons.length > 0 && (
-        <header className={styles.header}>
-          <h2 className={styles.title}>Polygon Manager</h2>
-          <div className={styles.controls}>
-            <button
-              className={styles.controlButton}
-              onClick={handleExport}
-              aria-label="Export polygons"
-            >
-              Export
-            </button>
-            <label className={styles.controlButton}>
-              Import
-              <input
-                type="file"
-                accept="application/json"
-                onChange={handleImport}
-                className={styles.fileInput}
-                aria-label="Import polygons"
-              />
-            </label>
-          </div>
-        </header>
-      )}
+      <header className={styles.header}>
+        <h2 className={styles.title}>Polygon Manager</h2>
+        <div className={styles.controls}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className={styles.searchInput}
+          />
+          {filteredPolygons.length > 0 && (
+            <>
+              <button
+                className={styles.controlButton}
+                onClick={handleExport}
+                aria-label="Export polygons"
+              >
+                <PiExportBold className="h-5 w-5" />
+                Export
+              </button>
+              <label className={styles.controlButton}>
+                <BiSolidFileImport className="h-5 w-5" />
+                Import
+                <input
+                  type="file"
+                  accept="application/json"
+                  onChange={handleImport}
+                  className={styles.fileInput}
+                  aria-label="Import polygons"
+                />
+              </label>
+            </>
+          )}
+        </div>
+      </header>
 
       {
         // If there are no polygons, show a message
-        polygons.length === 0 && (
+        filteredPolygons.length === 0 && (
           <p className={styles.noPolygons}>
             No polygons found. <Link href="/draw">Draw a polygon</Link>.
           </p>
@@ -114,7 +131,7 @@ const PolygonList: FC = () => {
       }
 
       <ul className={styles.polygonList}>
-        {polygons.map((polygon, index) => (
+        {filteredPolygons.map((polygon, index) => (
           <motion.li
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

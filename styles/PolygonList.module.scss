@@ -18,6 +18,7 @@
 .title {
   margin: 0;
   font-size: 1.5rem;
+  font-weight: bold;
   color: $primary-color;
 }
 
@@ -35,7 +36,9 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   &:hover {
     background: darken($primary-color, 10%);
   }
@@ -112,5 +115,25 @@
       color: #357ab8;
       text-decoration: underline;
     }
+  }
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+
+  &::placeholder {
+    color: #999;
+  }
+
+  &:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
   }
 }
