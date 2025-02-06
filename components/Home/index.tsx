@@ -37,7 +37,7 @@ const HomePage = () => {
             <span className={styles.gradientText}>GeoShape</span> Editor
           </h1>
           <p className={styles.subtitle}>
-            Advanced Geospatial Polygon Management Solution
+            Geospatial Polygon Management Solution
           </p>
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
