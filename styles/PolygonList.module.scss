@@ -40,7 +40,8 @@
   align-items: center;
   gap: 0.5rem;
   &:hover {
-    background: darken($primary-color, 10%);
+    background: $primary-color;
+    opacity: 0.8;
   }
 }
 
@@ -84,7 +85,8 @@
   line-height: 1;
 
   &:hover {
-    color: darken($error-color, 10%);
+    color: $error-color;
+    opacity: 0.8;
   }
 }
 

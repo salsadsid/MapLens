@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { area, centroid } from "@turf/turf";
+import { area, centroid, polygon } from "@turf/turf"; // Import the polygon helper function
 
 interface Polygon {
   id: string;
@@ -27,13 +27,8 @@ const polygonSlice = createSlice({
       state,
       action: PayloadAction<{ id: string; coordinates: number[][] }>
     ) => {
-      const polyFeature = {
-        type: "Feature",
-        geometry: {
-          type: "Polygon",
-          coordinates: [action.payload.coordinates],
-        },
-      };
+      // Use Turf's polygon function to create a valid GeoJSON Feature
+      const polyFeature = polygon([action.payload.coordinates]);
       const polyCenter = centroid(polyFeature).geometry.coordinates as [
         number,
         number

@@ -23,8 +23,8 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import AutoCenter from "./components/AutoCenter";
 
 const DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
+  iconUrl: icon.src, // Use .src to get the string URL
+  shadowUrl: iconShadow.src, // Use .src here as well
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
@@ -45,7 +45,7 @@ const MapComponent = () => {
   const onCreated = (e: any) => {
     const { layer } = e;
     if (layer && layer.getLatLngs) {
-      let latlngs = layer
+      const latlngs = layer
         .getLatLngs()[0]
         .map((latlng: any) => [latlng.lat, latlng.lng]);
 

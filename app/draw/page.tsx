@@ -1,10 +1,13 @@
 "use client";
 
-import MapComponent from "@/components/Map";
 import { useAppSelector } from "@/redux/hooks";
 import { deletePolygon } from "@/redux/slices/ploygonSlice";
 import styles from "@/styles/MangePolygons.module.scss";
 import stylesPolygonList from "@/styles/PolygonList.module.scss";
+import dynamic from "next/dynamic";
+
+// Dynamically import MapComponent with SSR disabled
+const MapComponent = dynamic(() => import("@/components/Map"), { ssr: false });
 
 const ManagePolygons = () => {
   const polygons = useAppSelector((state) => state.polygon.polygons);
