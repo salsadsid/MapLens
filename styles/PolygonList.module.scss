@@ -1,0 +1,92 @@
+@import "@/styles/variables";
+
+.container {
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $border-color;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: $primary-color;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.controlButton {
+  position: relative;
+  padding: 0.5rem 1rem;
+  background: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}
+
+.fileInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.polygonList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.polygonItem {
+  background: white;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.polygonHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: $error-color;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  line-height: 1;
+
+  &:hover {
+    color: darken($error-color, 10%);
+  }
+}
+
+.colorControls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}

@@ -101,7 +101,7 @@ const MapComponent = () => {
       {polygons.map((polygon) => (
         <Polygon
           key={polygon.id}
-          positions={polygon.coordinates}
+          positions={polygon.coordinates as [number, number][]}
           pathOptions={{
             color: polygon.borderColor,
             fillColor: polygon.fillColor,
