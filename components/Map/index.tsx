@@ -20,6 +20,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import AutoCenter from "./components/AutoCenter";
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -85,6 +86,7 @@ const MapComponent = () => {
       zoom={13}
       style={{ height: "100vh", width: "100%" }}
     >
+      <AutoCenter />
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <FeatureGroup>
         <EditControl

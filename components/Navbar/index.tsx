@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-blue-600">
-            MapLens
+            Maplens
           </Link>
 
           {/* Desktop Navigation */}
