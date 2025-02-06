@@ -1,8 +1,8 @@
-Below is an example README file with clear instructions on how to run the application locally. You can adjust the details (like repository URL, additional instructions, etc.) as needed:
+# Maplens (Interactive Map Polygon Editor)
 
 ---
 
-# Maplen (Interactive Map Polygon Editor)
+### Live link: [Maplens](https://map-lens.vercel.app/)
 
 An interactive map polygon editor built with **Next.js**, **TypeScript**, **Redux Toolkit**, **React Leaflet**, **Tailwind CSS**, **Sass**, and **Framer Motion**.
 
