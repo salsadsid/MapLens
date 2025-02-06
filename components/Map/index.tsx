@@ -113,14 +113,14 @@ const MapComponent = () => {
             onClick={() => setIsDrawing(true)}
             disabled={isDrawing}
             style={{ margin: "5px" }}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-[#4f46e5] hover:bg-[#4f46e5]/90 transition-all duration-200 text-white font-bold py-2 px-4 rounded"
           >
             Start Drawing
           </button>
           {isDrawing && (
             <>
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-[#4f46e5] hover:bg-[#4f46e5]/90 transition-all duration-200 text-white font-bold py-2 px-4 rounded"
                 onClick={handleComplete}
                 style={{ margin: "5px" }}
               >
@@ -132,7 +132,7 @@ const MapComponent = () => {
                   setCurrentPoints([]);
                   setMousePosition(null);
                 }}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-[#d32f2f] hover:bg-[#d32f2f]/90 transition-all duration-200 text-white font-bold py-2 px-4 rounded"
                 style={{ margin: "5px" }}
               >
                 Cancel

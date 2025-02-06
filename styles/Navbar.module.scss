@@ -44,11 +44,11 @@
 
   // Custom hover effect using Sass
   .navLink {
-    @apply text-gray-600 hover:text-blue-500 transition-colors;
+    @apply text-gray-600 hover:text-[#4f46e5] transition-colors;
 
     &::after {
       content: "";
-      @apply block w-0 h-0.5 bg-blue-500 transition-all duration-300;
+      @apply block w-0 h-0.5 bg-[#4f46e5] transition-all duration-300;
     }
 
     &:hover::after {

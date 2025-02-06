@@ -21,8 +21,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-600">
-            Maplens
+          <Link
+            href="/"
+            className="text-2xl uppercase tracking-wide font-bold text-[#4f46e5]"
+          >
+            🗺️ Maplens
           </Link>
 
           {/* Desktop Navigation */}
