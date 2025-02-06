@@ -1,30 +1,67 @@
+"use client";
+
 import styles from "@/styles/Home.module.scss";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { FiDownload, FiEdit, FiMap } from "react-icons/fi";
 
 const HomePage = () => {
+  const features = [
+    {
+      icon: <FiMap />,
+      title: "Draw Polygons",
+      text: "Create precise geographic shapes with intuitive drawing tools",
+    },
+    {
+      icon: <FiEdit />,
+      title: "Edit Properties",
+      text: "Modify colors, borders, and metadata in real-time",
+    },
+    {
+      icon: <FiDownload />,
+      title: "Import/Export",
+      text: "JSON support for seamless data integration",
+    },
+  ];
+
   return (
     <div className={styles.container}>
-      <header className={styles.hero}>
-        <h1>Interactive Map Polygon Editor</h1>
-        <p>Draw, edit, and manage polygons with ease.</p>
-        <Link href="/draw">
-          <button className={styles.ctaButton}>Start Mapping</button>
-        </Link>
-      </header>
+      <section className={styles.hero}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className={styles.heroContent}
+        >
+          <h1>
+            <span className={styles.gradientText}>GeoShape</span> Editor
+          </h1>
+          <p className={styles.subtitle}>
+            Advanced Geospatial Polygon Management Solution
+          </p>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/draw" className={styles.cta}>
+              Get Started →
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
 
       <section className={styles.features}>
-        <div className={styles.featureCard}>
-          <h3>📍 Draw Polygons</h3>
-          <p>Easily create and manage polygons on the map.</p>
-        </div>
-        <div className={styles.featureCard}>
-          <h3>🎨 Customize Colors</h3>
-          <p>Change polygon fill and border colors.</p>
-        </div>
-        <div className={styles.featureCard}>
-          <h3>📊 Export & Import</h3>
-          <p>Save and load polygons as JSON files.</p>
-        </div>
+        {features.map((feature, index) => (
+          <motion.div
+            key={feature.title}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+            className={styles.featureCard}
+          >
+            <div className={styles.featureIcon}>{feature.icon}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.text}</p>
+          </motion.div>
+        ))}
       </section>
     </div>
   );

@@ -7,9 +7,10 @@ import {
   updatePolygon,
 } from "@/redux/slices/ploygonSlice";
 import styles from "@/styles/PolygonList.module.scss";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import { ChangeEvent, FC, useCallback } from "react";
 import ColorInput from "./components/ColorInput";
-
 // Define the Polygon type
 interface Polygon {
   id: string;
@@ -78,32 +79,49 @@ const PolygonList: FC = () => {
 
   return (
     <section className={styles.container}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Polygon Manager</h2>
-        <div className={styles.controls}>
-          <button
-            className={styles.controlButton}
-            onClick={handleExport}
-            aria-label="Export polygons"
-          >
-            Export
-          </button>
-          <label className={styles.controlButton}>
-            Import
-            <input
-              type="file"
-              accept="application/json"
-              onChange={handleImport}
-              className={styles.fileInput}
-              aria-label="Import polygons"
-            />
-          </label>
-        </div>
-      </header>
+      {polygons.length > 0 && (
+        <header className={styles.header}>
+          <h2 className={styles.title}>Polygon Manager</h2>
+          <div className={styles.controls}>
+            <button
+              className={styles.controlButton}
+              onClick={handleExport}
+              aria-label="Export polygons"
+            >
+              Export
+            </button>
+            <label className={styles.controlButton}>
+              Import
+              <input
+                type="file"
+                accept="application/json"
+                onChange={handleImport}
+                className={styles.fileInput}
+                aria-label="Import polygons"
+              />
+            </label>
+          </div>
+        </header>
+      )}
+
+      {
+        // If there are no polygons, show a message
+        polygons.length === 0 && (
+          <p className={styles.noPolygons}>
+            No polygons found. <Link href="/draw">Draw a polygon</Link>.
+          </p>
+        )
+      }
 
       <ul className={styles.polygonList}>
-        {polygons.map((polygon) => (
-          <li key={polygon.id} className={styles.polygonItem}>
+        {polygons.map((polygon, index) => (
+          <motion.li
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+            key={polygon.id}
+            className={styles.polygonItem}
+          >
             <div className={styles.polygonHeader}>
               <h3>{polygon.label}</h3>
               <button
@@ -138,7 +156,7 @@ const PolygonList: FC = () => {
                 }
               />
             </div>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </section>

@@ -86,7 +86,31 @@
 }
 
 .colorControls {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
+  place-items: center;
   gap: 1rem;
+}
+
+.noPolygons {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #357ab8;
+      text-decoration: underline;
+    }
+  }
 }
