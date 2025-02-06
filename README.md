@@ -2,7 +2,6 @@ Below is an example README file with clear instructions on how to run the applic
 
 ---
 
-````markdown
 # Maplen (Interactive Map Polygon Editor)
 
 An interactive map polygon editor built with **Next.js**, **TypeScript**, **Redux Toolkit**, **React Leaflet**, **Tailwind CSS**, **Sass**, and **Framer Motion**.
@@ -43,7 +42,6 @@ An interactive map polygon editor built with **Next.js**, **TypeScript**, **Redu
    git clone https://github.com/salsadsid/MapLens.git
    cd MapLens
    ```
-````
 
 2. **Install dependencies:**
 
