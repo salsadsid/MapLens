@@ -1,5 +1,5 @@
+import styles from "@/styles/Home.module.scss";
 import Link from "next/link";
-import styles from "./Home.module.scss";
 
 const HomePage = () => {
   return (

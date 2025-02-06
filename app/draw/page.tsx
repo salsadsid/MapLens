@@ -2,7 +2,7 @@
 import MapComponent from "@/components/MapComponents";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { deletePolygon } from "@/redux/slices/ploygonSlice";
-import styles from "./MangePolygons.module.scss";
+import styles from "@/styles/MangePolygons.module.scss";
 
 // Dynamically load Leaflet to avoid SSR issues
 // const MapComponent = dynamic(() => import("@/components/MapComponents"), {
@@ -17,7 +17,7 @@ const ManagePolygons = () => {
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
-        <h2>Manage Polygons</h2>
+        <h2>Quick view</h2>
         {polygons.length === 0 ? (
           <p>No polygons added yet.</p>
         ) : (

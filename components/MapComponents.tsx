@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addPolygon } from "@/redux/slices/ploygonSlice";
 // Or individual functions
 import { booleanIntersects, polygon as turfPolygon } from "@turf/turf";
+import L from "leaflet";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
@@ -17,6 +18,15 @@ import {
 } from "react-leaflet";
 import { v4 as uuidv4 } from "uuid";
 
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+const DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 const EditControl = dynamic(
   () => import("react-leaflet-draw").then((mod) => mod.EditControl),
   { ssr: false }
@@ -101,7 +111,7 @@ const MapComponent = () => {
       ))}
       {polygons.map((polygon) => (
         <Marker key={polygon.id} position={polygon.center}>
-          <Tooltip permanent>
+          <Tooltip interactive>
             <div>
               <p>
                 <strong>{polygon.label}</strong>
